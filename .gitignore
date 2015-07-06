@@ -1,0 +1,17 @@
+logs/*
+!.gitkeep
+node_modules/
+tmp
+.DS_Store
+build/
+build/*
+bin/
+bin/*
+.settings/
+.settings/*
+www/test_out/
+
+
+www/bower_components/
+www/coverage/
+www/css/

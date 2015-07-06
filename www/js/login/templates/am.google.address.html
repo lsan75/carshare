@@ -1,0 +1,45 @@
+<div>
+
+  <p>
+    <label for="address">Adresse</label>
+    <input
+      type="text"
+      id="address"
+      ng-model="login.form.common.address"
+      placeholder="Votre adresse">
+  </p>
+
+  <p>
+    <label for="street">Rue</label>
+    <input
+      type="text"
+      id="street"
+      ng-model="login.form.common.street"
+      ng-readonly="true"
+      ng-required="true"
+      placeholder="Rue">
+  </p>
+
+  <p>
+    <label for="postcode">Code postal</label>
+    <input
+      type="text"
+      id="postcode"
+      ng-model="login.form.common.postCode"
+      ng-readonly="true"
+      ng-required="true"
+      placeholder="Code postal">
+  </p>
+
+  <p>
+    <label for="city">Ville</label>
+    <input
+      type="text"
+      id="city"
+      ng-model="login.form.common.city"
+      ng-readonly="true"
+      ng-required="true"
+      placeholder="Ville">
+  </p>
+
+</div>

@@ -1,0 +1,95 @@
+<section class="login-container">
+
+  <nav>
+    <a href="" ng-click="login.signin = true">Connexion</a>
+    <a href="" ng-click="login.signin = false">Nouveau compte</a>
+  </nav>
+
+  <form name="signin" ng-submit="login.signForm()" novalidate>
+
+  <!-- Signin fields -->
+    <div>
+      <p>
+        <label for="login">Email</label>
+        <input
+          type="email"
+          id="login"
+          ng-model="login.form.signin.email"
+          ng-required="true"
+          placeholder="Email">
+      </p>
+
+      <p>
+        <label for="pass">Mot de passe</label>
+        <input
+          type="password"
+          id="pass"
+          ng-model="login.form.signin.password"
+          ng-required="true"
+          placeholder="Mot de passe">
+      </p>
+    </div>
+
+  <!-- Common signup data -->
+    <div ng-if="!login.signin">
+
+      <p>
+        <label for="firstname">Prénom</label>
+        <input
+          type="text"
+          id="firstname"
+          ng-model="login.form.common.firstname"
+          ng-required="true"
+          placeholder="Prénom">
+      </p>
+
+      <p>
+        <label for="firstname">Nom</label>
+        <input
+          type="text"
+          id="lastname"
+          ng-model="login.form.common.lastname"
+          ng-required="true"
+          placeholder="Nom">
+      </p>
+
+      <am-google-address></am-google-address>
+
+    </div>
+
+  <!-- Driver data -->
+    <div ng-if="!login.signin && login.type === 'proposer'">
+      <p>
+        <label for="vehicletype">Type véhicule</label>
+        <input
+          type="radio"
+          id="vehicletype"
+          ng-model="login.form.driver.vehicleType"
+          ng-required="true"
+          ng-value="'car'"> Voiture
+
+        <input
+          type="radio"
+          ng-model="login.form.driver.vehicleType"
+          ng-required="true"
+          ng-value="'moto'"> Moto
+      </p>
+
+      <p>
+        <label for="availableseats">Nb. places disponible</label>
+        <input
+          type="number"
+          id="availableseats"
+          ng-model="login.form.driver.availableSeats"
+          palceholder="Nb places">
+      </p>
+    </div>
+
+  <!-- validate button -->
+    <p>
+      <input type="submit" ng-disabled="signin.$invalid">
+    </p>
+
+  </form>
+
+</section>

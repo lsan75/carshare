@@ -1,0 +1,14 @@
+{
+  "name": "AmundiCar",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "~1.4.x",
+    "angular-ui-router": "latest"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.4.x"
+  },
+  "resolutions": {
+    "angular": "~1.4.x"
+  }
+}
