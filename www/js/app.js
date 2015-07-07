@@ -24,17 +24,13 @@
       })
 
       .state('main', {
-        url: '/main/:type',
+        url: '/main',
         controller: 'MainController',
         templateUrl: 'js/main/templates/main.html',
         resolve: {
-          MapData: ['UserFactory', '$state',
-          function(UserFactory, $state) {
-            return UserFactory.getUsers($state.params.type);
-          }],
-          OwnerData: ['UserFactory', '$state',
-          function(UserFactory, $state) {
-            return UserFactory.getOwner($state.params.type);
+          MapData: ['UserFactory',
+          function(UserFactory) {
+            return UserFactory.getUsers();
           }]
         }
       })

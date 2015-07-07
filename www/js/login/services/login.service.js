@@ -3,8 +3,8 @@
 (function() {
 
   angular.module('carApp')
-    .factory('LoginFactory', ['$state', '$window', '$q', 'Fire',
-    function($state, $window, $q, Fire) {
+    .factory('LoginFactory', ['$state', '$window', '$q', 'Fire', 'UserFactory',
+    function($state, $window, $q, Fire, UserFactory) {
 
       var log = {
 
@@ -23,13 +23,15 @@
               });
           } else {
 
+        // signup
             log.createUser(form.signin).then(
-              function() {
-                log.signin(form.signin).then(
-                  function() {
-                    log.addUserData(type, form);
+              function(uid) {
+                Fire.uid = uid;
+                log.signin(form.signin).then(function() {
+                  log.addUserData(type, form).then(function() {
                     defer.resolve('signed');
                   });
+                });
               },
               function(error) {
                 defer.reject('Error creating user:', error);
@@ -48,11 +50,11 @@
           Fire.db.createUser({
             email    : creds.email,
             password : creds.password
-          }, function(error) {
+          }, function(error, userData) {
             if (error) {
               defer.reject(error);
             } else {
-              defer.resolve('signed up');
+              defer.resolve(userData.uid);
             }
           });
 
@@ -60,21 +62,29 @@
         },
 
         addUserData: function(type, form) {
-
+          var defer = $q.defer();
           var obj = {
             uid: Fire.uid,
             email: form.signin.email,
-            common: form.common
+            common: form.common,
+            type: type
           };
-          var base = 'passengers';
 
           if(type === 'proposer') {
-            base = 'drivers';
             obj = angular.extend(obj, {driver: form.driver});
           }
 
-          var child = Fire.db.child(base);
-          child.push(obj);
+          var child = Fire.db.child('people');
+          child.push(obj, function(error) {
+            if (error) {
+              defer.reject('');
+            } else {
+              UserFactory.setCurrentUser(obj);
+              defer.resolve('');
+            }
+          });
+
+          return defer.promise;
         },
 
         signin: function(creds) {
@@ -89,7 +99,9 @@
               defer.reject(error);
             } else {
               Fire.uid = authData.uid;
-              defer.resolve(authData.uid);
+              UserFactory.getOwner().then(function() {
+                defer.resolve(authData.uid);
+              });
             }
           },
           {

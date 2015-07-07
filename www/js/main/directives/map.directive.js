@@ -3,8 +3,8 @@
 (function() {
 
   angular.module('carApp')
-    .directive('map', ['$timeout', 'MapStyle', 'GeocodeFactory',
-    function($timeout, MapStyle, GeocodeFactory) {
+    .directive('map', ['$timeout', 'MapOptions', 'GeocodeFactory',
+    function($timeout, MapOptions, GeocodeFactory) {
 
       return {
         restrict: 'E',
@@ -12,8 +12,7 @@
         templateUrl: 'js/main/templates/map.html',
         scope: {
           input: '=',
-          owner: '=',
-          type: '@'
+          owner: '='
         },
         link: function(scope, elem) {
 
@@ -23,32 +22,20 @@
           var dir = {
 
             initialize: function() {
-              GeocodeFactory.getLocation('Paris, France').then(function(res) {
+              var address = dir.formatAddress(scope.owner);
+              GeocodeFactory.getLocation(address).then(function(res) {
                 var lats = res.geometry.location;
                 dir.setMap(lats);
               });
             },
 
             setMap: function(lats) {
-              var mapOptions = {
-                center: lats,
-                zoom: 11,
-                styles: MapStyle,
-                panControl: false,
-                streetViewControl: false,
-                overviewMapControl: false,
-                mapTypeControl: false,
-                zoomControl: true,
-                zoomControlOptions: {
-                  style: google.maps.ZoomControlStyle.LARGE,
-                  position: google.maps.ControlPosition.LEFT_BOTTOM
-                }
-              };
               var el = elem[0];
+              MapOptions.center = lats;
               $timeout(function() {
-                map = new google.maps.Map(el, mapOptions);
-                angular.forEach(scope.input, function(marker) {
-                  dir.setMarker(marker);
+                map = new google.maps.Map(el, MapOptions);
+                angular.forEach(scope.input, function(user) {
+                  dir.setMarker(user);
                 });
                 dir.setMarker(scope.owner);
               });
@@ -63,26 +50,30 @@
                 ', France';
             },
 
+            getIcon: function(marker) {
+              return marker.type === 'proposer' ?
+                'icone-car.png' :
+                'icone-member.png';
+            },
+
             setMarker: function(marker) {
 
               var here = dir.formatAddress(marker);
-
-/*              var image = {
-                url: 'medias/oldcar.svg',
-                scaledSize: new google.maps.Size(42, 42)
+              var image = {
+                url: 'img/icons/' + dir.getIcon(marker)
               };
-*/
+
               GeocodeFactory.getLocation(here).then(function(res) {
 
                 markers.push(new google.maps.Marker({
                   map: map,
-                  position: res.geometry.location
+                  position: res.geometry.location,
+                  icon: image
                 }));
 
                 google.maps.event.addListener(markers[markers.length - 1], 'click', function() {
                   map.setZoom(16);
                   map.setCenter(this.getPosition());
-                  //map.panBy(-200, 100);
                 });
               });
             }
