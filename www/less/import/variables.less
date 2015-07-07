@@ -1,0 +1,244 @@
+// --------------------------------------------------
+// Import / variable
+// --------------------------------------------------
+
+// Color White / Black
+@base-color-white: white;
+@base-color-black: black;
+
+// Base Master
+// --------------------------------------------------
+
+@base-master-color: rgb(0, 0, 0);
+@base-master-color-text: rgb(17, 17, 17);
+@base-master-color-link: rgb(0, 158, 224);
+@base-master-color-border: rgb(220, 223, 227);
+@base-master-background: rgb(255, 255, 255);
+
+// Color Green || Success Start
+@base-color-green: rgb(16, 207, 189);
+// Light colors
+@base-color-green-light: mix(@base-color-green, #fff, 18%);
+@base-color-green-lighter: mix(@base-color-green, #fff, 14%);
+@base-color-green-lightest: mix(@base-color-green, #fff, 9%);
+// Darker colors
+@base-color-green-dark: mix(@base-color-green, #000, 60%);
+@base-color-green-darker: mix(@base-color-green, #000, 30%);
+@base-color-green-darkest: mix(@base-color-green, #000, 20%);
+// End Color Green || Success
+
+// Color Red || Danger Start
+@base-color-red: rgb(245, 87, 83);
+@base-color-red-hover: mix(@base-color-red, #fff, 90%);
+@base-color-red-active: mix(@base-color-red, #000, 94%);
+// Light colors
+@base-color-red-light: mix(@base-color-red, #fff, 18%);
+@base-color-red-lighter: mix(@base-color-red, #fff, 14%);
+@base-color-red-lightest: mix(@base-color-red, #fff, 9%);
+// Darker colors
+@base-color-red-dark: mix(@base-color-red, #000, 60%);
+@base-color-red-darker: mix(@base-color-red, #000, 30%);
+@base-color-red-darkest: mix(@base-color-red, #000, 20%);
+// End Color Red || Danger
+
+// Color Pink || Happy Start
+@base-color-pink: rgb(254, 68, 114);
+@base-color-pink-hover: mix(@base-color-pink, #fff, 90%);
+@base-color-pink-active: mix(@base-color-pink, #000, 94%);
+// Light colors
+@base-color-pink-light: mix(@base-color-pink, #fff, 18%);
+@base-color-pink-lighter: mix(@base-color-pink, #fff, 14%);
+@base-color-pink-lightest: mix(@base-color-pink, #fff, 9%);
+// Darker colors
+@base-color-pink-dark: mix(@base-color-pink, #000, 60%);
+@base-color-pink-darker: mix(@base-color-pink, #000, 30%);
+@base-color-pink-darkest: mix(@base-color-pink, #000, 20%);
+// End Color Pink || Happy
+
+// Color Bleu || Complete Start
+@base-color-blue: rgb(72, 176, 247);
+@base-color-blue-hover: mix(@base-color-blue, #fff, 90%);
+@base-color-blue-active: mix(@base-color-blue, #000, 94%);
+// Light colors
+@base-color-blue-light: mix(@base-color-blue, #fff, 18%);
+@base-color-blue-lighter: mix(@base-color-blue, #fff, 14%);
+@base-color-blue-lightest: mix(@base-color-blue, #fff, 9%);
+// Darker colors
+@base-color-blue-dark: mix(@base-color-blue, #000, 60%);
+@base-color-blue-darker: mix(@base-color-blue, #000, 30%);
+@base-color-blue-darkest: mix(@base-color-blue, #000, 20%);
+// End Color Bleu || Complete
+
+// Color Yellow || Warning Start
+@base-color-yellow: rgb(248, 208, 83);
+@base-color-yellow-hover: mix(@base-color-yellow, #fff, 90%);
+@base-color-yellow-active: mix(@base-color-yellow, #000, 94%);
+// Light colors
+@base-color-yellow-light: mix(@base-color-yellow, #fff, 18%);
+@base-color-yellow-lighter: mix(@base-color-yellow, #fff, 14%);
+@base-color-yellow-lightest: mix(@base-color-yellow, #fff, 9%);
+// Darker colors
+@base-color-yellow-dark: mix(@base-color-yellow, #000, 60%);
+@base-color-yellow-darker: mix(@base-color-yellow, #000, 30%);
+@base-color-yellow-darkest: mix(@base-color-yellow, #000, 20%);
+// End Color Yellow || Warning
+
+// Color Move || Primary Start
+@base-color-move: rgb(109, 92, 174);
+@base-color-move-hover: mix(@base-color-move, #fff, 90%);
+@base-color-move-active: mix(@base-color-move, #000, 94%);
+// Light colors
+@base-color-move-light: mix(@base-color-move, #fff, 18%);
+@base-color-move-lighter: mix(@base-color-move, #fff, 14%);
+@base-color-move-lightest: mix(@base-color-move, #fff, 9%);
+// Darker colors
+@base-color-move-dark: mix(@base-color-move, #000, 60%);
+@base-color-move-darker: mix(@base-color-move, #000, 30%);
+@base-color-move-darkest: mix(@base-color-move, #000, 20%);
+// End Color Base
+
+// Color Grey || Master Start
+@base-color-grey: rgb(98, 98, 98);
+@base-color-grey-hover: mix(@base-color-grey, #fff, 90%);
+@base-color-grey-active: mix(@base-color-grey, #000, 94%);
+// Light colors
+@base-color-grey-light: mix(@base-color-grey, #fff, 18%);
+@base-color-grey-lighter: mix(@base-color-grey, #fff, 14%);
+@base-color-grey-lightest: mix(@base-color-grey, #fff, 9%);
+@base-color-grey-lightest-xl: mix(@base-color-grey, #fff, 5%);
+@base-color-grey-lightest-xxl: mix(@base-color-grey, #fff, 3%);
+@base-color-grey-lightest-xxxl: mix(@base-color-grey, #fff, 1%);
+// Darker colors
+@base-color-grey-dark: mix(@base-color-grey, #000, 60%);
+@base-color-grey-darker: mix(@base-color-grey, #000, 30%);
+@base-color-grey-darkest: mix(@base-color-grey, #000, 20%);
+// End Color Base
+
+// Color Base Start
+@base-color: rgb(59, 71, 82);
+@base-color-hover: mix(@base-color, #fff, 90%);
+@base-color-active: mix(@base-color, #000, 94%);
+// Light colors
+@base-color-light: mix(@base-color, #fff, 18%);
+@base-color-lighter: mix(@base-color, #fff, 14%);
+@base-color-lightest: mix(@base-color, #fff, 9%);
+// Darker colors
+@base-color-dark: mix(@base-color, #000, 60%);
+@base-color-darker: mix(@base-color, #000, 30%);
+@base-color-darkest: mix(@base-color, #000, 20%);
+// End Color Base
+
+// Color Theme
+// --------------------------------------------------
+// Color base map
+@theme-color-map: #01b5ed;
+// Color base map dark
+@theme-color-map-dark: #041647;
+// End Color Base Map
+
+// Global
+// --------------------------------------------------
+//## Define the [description]
+
+// Font Family
+// --------------------------------------------------
+//## Define the [description]
+@base-font-family: 'Open Sans', sans-serif; //'Roboto', sans-serif;
+
+// Font Size
+// --------------------------------------------------
+//## Define the [description]
+@base-font-size: 16px;
+
+@base-font-size-small: @base-font-size - 1;
+@base-font-size-x-small: @base-font-size-small - 2 ;
+@base-font-size-xx-small: @base-font-size-x-small - 3;
+
+@base-font-size-large: @base-font-size + 1;
+@base-font-size-x-large: @base-font-size-large + 2;
+@base-font-size-xx-large: @base-font-size-x-large + 3;
+
+@base-font-size-smaller: 90%;
+@base-font-size-larger: 110%;
+
+// Font Weight
+// --------------------------------------------------
+//## Define the [description]
+@base-font-weight-thin: 100;
+@base-font-weight-light: 300;
+@base-font-weight-normal: 400;
+@base-font-weight-medium: 500;
+@base-font-weight-bold: 700;
+@base-font-weight-ultra-bold: 900;
+
+// Z-index
+// --------------------------------------------------
+//## Define the [description]
+@base-z-index-1: 10;
+@base-z-index-2: 20;
+@base-z-index-3: 30;
+@base-z-index-4: 40;
+@base-z-index-5: 50;
+@base-z-index-6: 60;
+@base-z-index-7: 70;
+@base-z-index-8: 80;
+@base-z-index-9: 90;
+@base-z-index-10: 100;
+@base-z-index-20: 200;
+@base-z-index-50: 500;
+@base-z-index-60: 600;
+@base-z-index-70: 700;
+@base-z-index-80: 800;
+@base-z-index-90: 900;
+// Layout
+// --------------------------------------------------
+//## Define the [description]
+@base-offset: 10px;
+@base-offset-horizontal: 10px;
+@base-offset-vertical: 10px;
+@base-width-sidebar-left: 250px;
+@base-width-sidebar-right: 300px;
+@base-separator-width: 5px;
+@base-transition-delay: 0.2s;
+@base-transition-timing-function: linear;
+
+// Base Media queries breakpoints
+// --------------------------------------------------
+//## Define the breakpoints at which your layout will change, adapting to different screen sizes.
+
+// Extra small screen / phone
+@screen-xs: 460px;
+@screen-xs-min: @screen-xs;
+@screen-phone: @screen-xs-min;
+
+// Small screen / tablet
+@screen-sm: 768px;
+@screen-sm-min: @screen-sm;
+@screen-tablet: @screen-sm-min;
+
+// Medium screen / desktop
+@screen-md: 992px;
+@screen-md-min: @screen-md;
+@screen-desktop: @screen-md-min;
+
+// Large screen / wide desktop
+@screen-lg: 1200px;
+@screen-lg-min: @screen-lg;
+@screen-lg-desktop: @screen-lg-min;
+
+// So media queries don't overlap when required, provide a maximum
+@screen-xs-max: (@screen-sm-min - 1);
+@screen-sm-max: (@screen-md-min - 1);
+@screen-md-max: (@screen-lg-min - 1);
+
+@base-media-large: ~"only screen and (min-width: @{screen-lg-min})";
+@base-media-medium: ~"only screen and (min-width: @{screen-md-min}) and (max-width: @{screen-md-max})";
+@base-media-small: ~"only screen and (min-width: @{screen-sm-min}) and (max-width: @{screen-sm-max})";
+@base-media-extra-small: ~"only screen and (max-width: @{screen-xs-max})";
+@base-media-extra-x-small: ~"only screen and (max-width: @{screen-xs-min})";
+
+
+// Base Media queries breakpoints
+// --------------------------------------------------
+@base-percent-hover: 80%;
+@base-percent-active: 90%;

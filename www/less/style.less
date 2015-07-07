@@ -1,4 +1,23 @@
 // default less
-
+@import "import/reset";
+@import "import/variables";
+@import "import/elements";
+@import "import/util";
+@import "import/responsive";
 @import "import/layout";
 @import "import/map";
+
+@import "import/include/header";
+@import "import/include/home";
+@import "import/include/login";
+
+html, body, main{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  color: @theme-color-map;
+  font-family: @base-font-family;
+  font-weight: @base-font-weight-light;
+
+  background:@base-color-white url('../img/bg/bg.jpg') 50% 50% no-repeat;
+}

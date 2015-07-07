@@ -1,0 +1,72 @@
+/* Clear Floated Elements
+----------------------------------------------------------------------------------------------------*/
+.clear() {
+  clear: both;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+.clear {
+  .clear();
+}
+
+.clearfix() {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+.clearfix {
+  .clearfix()
+}
+
+/* Font calculator
+----------------------------------------------------------------------------------------------------*/
+// Example
+// .rem-calc(margin-left, 20);
+.rem-calc(@attr, @val) {
+  @{attr} : @val / @base-font-size * 1rem;
+}
+
+.absolute (@top: initial, @right: initial, @bottom: initial, @left: initial ){
+  position: absolute;
+  .rem-calc(top, @top);
+  .rem-calc(right, @right);
+  .rem-calc(bottom, @bottom);
+  .rem-calc(left, @left);
+}
+
+/*---------------------------------------------------
+    LESS Hover Active
+  ---------------------------------------------------*/
+
+.color-light(@color) {
+  color: mix(@color, #fff, 18%);
+}
+
+.color-hover-active(@color) {
+
+  &:hover {
+    color: mix(@color, #fff, @base-percent-hover);
+  }
+  &:active {
+    color: mix(@color, #000, @base-percent-active);
+  }
+}
+
+.background-hover-active(@color) {
+  &:hover {
+    background-color: mix(@color, #fff, @base-percent-hover);
+  }
+  &:active {
+    background-color: mix(@color, #000, @base-percent-active);
+  }
+}

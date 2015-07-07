@@ -1,0 +1,108 @@
+// Variables
+// --------------------------------------------------
+@h-header-height: 60px;
+@h-header-background: #272b35;
+@h-header-color: @base-color-blue;
+@h-header-border-color: @base-color-white;
+
+/** Header
+ ************************************************** */
+.page-header {
+
+  .user-select(none);
+  .rem-calc(height, @h-header-height);
+  background: @h-header-background;
+  .rem-calc(padding-top, 12);
+  .rem-calc(padding-right, 20);
+  .rem-calc(padding-bottom, 12);
+  .rem-calc(padding-left, 20);
+  .rem-calc(line-height, @h-header-height - 24);
+  width: 100%;
+
+  .drop-shadow(0, 1px, 10px, 0.5);
+
+  * {
+    color: #FFFFFF;
+  }
+  .header-left {
+    float: left;
+    .nav {
+      float: left;
+    }
+    .title {
+      float: left;
+      .rem-calc(line-height, @h-header-height - 24);
+      .rem-calc(padding-top, 0);
+      .rem-calc(padding-right, 0);
+      .rem-calc(padding-bottom, 0);
+      .rem-calc(padding-left, 10);
+      font-weight: @base-font-weight-ultra-bold;
+      span {
+        color: @h-header-color;
+      }
+    }
+  }
+  .header-right {
+    float: right;
+    .nav {
+      .rem-calc(padding-top, 10);
+      .rem-calc(padding-right, 0);
+      .rem-calc(padding-bottom, 10);
+      .rem-calc(padding-left, 0);
+      ul {
+        li {
+          float: left;
+          //border-left: 1px solid #383d49;
+          a {
+            .rem-calc(padding-top, 0);
+            .rem-calc(padding-right, 10);
+            .rem-calc(padding-bottom, 0);
+            .rem-calc(padding-left, 10);
+
+            .rem-calc(line-height, 16);
+
+            display: block;
+            .fa {
+              .rem-calc(margin-left, 5);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .header-search {
+    float: left;
+    width: 50%;
+    .rem-calc(margin-top, 0);
+    .rem-calc(margin-right, 0);
+    .rem-calc(margin-bottom, 0);
+    .rem-calc(margin-left, 40);
+    position: relative;
+
+    .search-global {
+      border-bottom: 1px solid @h-header-border-color;
+      .form-control {
+        background: transparent;
+        border: 0;
+        .rem-calc(font-weight, @base-font-weight-light);
+        width: 100%;
+        &:focus + .btn.search {
+          color: @h-header-color;
+        }
+      }
+      .btn.submit {
+        display: none;
+      }
+      .btn.search {
+        position: absolute;
+        .rem-calc(right, 8);
+        top: 40%;
+        .rem-calc(margin-top, -8);
+        color: @h-header-border-color;
+      }
+    }
+  }
+}
+
+/* ** End Header ** */
