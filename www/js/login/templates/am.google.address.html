@@ -1,41 +1,45 @@
 <div class="group-input">
 
-  <div class="input">
-    <label for="address">Adresse</label>
+  <div class="input-wrap">
+    <label class="label" for="address">Adresse</label>
     <input
     type="text"
     id="address"
+    class="input"
     ng-model="login.form.common.address"
     placeholder="Votre adresse">
   </div>
 
-  <div class="input">
-    <label for="street">Rue</label>
+  <div class="input-wrap">
+    <label class="label" for="street">Rue</label>
     <input
     type="text"
     id="street"
+    class="input"
     ng-model="login.form.common.street"
     ng-readonly="true"
     ng-required="true"
     placeholder="Rue">
   </div>
 
-  <div class="input">
-    <label for="postcode">Code postal</label>
+  <div class="input-wrap w50">
+    <label class="label" for="postcode">Code postal</label>
     <input
     type="text"
     id="postcode"
+    class="input"
     ng-model="login.form.common.postCode"
     ng-readonly="true"
     ng-required="true"
     placeholder="Code postal">
   </div>
 
-  <div class="input">
-    <label for="city">Ville</label>
+  <div class="input-wrap w50">
+    <label class="label" for="city">Ville</label>
     <input
     type="text"
     id="city"
+    class="input"
     ng-model="login.form.common.city"
     ng-readonly="true"
     ng-required="true"
