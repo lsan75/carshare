@@ -8,62 +8,64 @@
     </a>
   </nav>
 
+  <a ui-sref="home" class="logo"></a>
+
   <form name="signin" ng-submit="login.signForm()" novalidate>
 
     <!-- Signin fields -->
-    <div>
-      <p>
-        <label for="login">Email</label>
+    <div class="group-input">
+      <div class="input">
+        <label class="label" for="login">Email</label>
         <input
         type="email"
         id="login"
         ng-model="login.form.signin.email"
         ng-required="true"
         placeholder="Email">
-      </p>
+      </div>
 
-      <p>
-        <label for="pass">Mot de passe</label>
+      <div class="input">
+        <label class="label" for="pass">Mot de passe</label>
         <input
         type="password"
         id="pass"
         ng-model="login.form.signin.password"
         ng-required="true"
         placeholder="Mot de passe">
-      </p>
+      </div>
     </div>
 
     <!-- Common signup data -->
-    <div ng-if="!login.signin">
+    <div class="group-input" ng-if="!login.signin">
 
-      <p>
-        <label for="firstname">Prénom</label>
+      <div class="input">
+        <label class="label" for="firstname">Prénom</label>
         <input
         type="text"
         id="firstname"
         ng-model="login.form.common.firstname"
         ng-required="true"
         placeholder="Prénom">
-      </p>
+      </div>
 
-      <p>
-        <label for="firstname">Nom</label>
+      <div class="input">
+        <label class="label" for="firstname">Nom</label>
         <input
         type="text"
         id="lastname"
         ng-model="login.form.common.lastname"
         ng-required="true"
         placeholder="Nom">
-      </p>
+      </div>
 
       <am-google-address></am-google-address>
 
     </div>
 
     <!-- Driver data -->
-    <div ng-if="!login.signin && login.type === 'proposer'">
-      <p>
-        <label for="vehicletype">Type véhicule</label>
+    <div class="group-input" ng-if="!login.signin && login.type === 'proposer'">
+      <div class="input">
+        <label class="label" for="vehicletype">Type véhicule</label>
         <input
         type="radio"
         id="vehicletype"
@@ -76,16 +78,16 @@
         ng-model="login.form.driver.vehicleType"
         ng-required="true"
         ng-value="'moto'"> Moto
-      </p>
+      </div>
 
-      <p>
-        <label for="availableseats">Nb. places disponible</label>
+      <div class="input">
+        <label class="label" for="availableseats">Nb. places disponible</label>
         <input
         type="number"
         id="availableseats"
         ng-model="login.form.driver.availableSeats"
         palceholder="Nb places">
-      </p>
+      </div>
     </div>
 
     <!-- validate button -->
