@@ -8,7 +8,7 @@
 
       $scope.home = {
         logTo: function(type) {
-          $state.go('main', {type: type});
+          $state.go('login', {type: type});
         }
       };
 
