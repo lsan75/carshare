@@ -9,6 +9,7 @@ bin/
 bin/*
 .settings/
 .settings/*
+.idea/
 www/test_out/
 
 
