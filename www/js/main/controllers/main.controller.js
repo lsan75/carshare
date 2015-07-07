@@ -3,13 +3,12 @@
 (function() {
 
   angular.module('carApp')
-    .controller('MainController', ['$scope', '$timeout', '$stateParams', 'MapData', 'OwnerData',
-    function($scope, $timeout, $stateParams, MapData, OwnerData) {
+    .controller('MainController', ['$scope', 'MapData', 'UserFactory',
+    function($scope, MapData, UserFactory) {
 
       $scope.main = {
         users: MapData,
-        owner: OwnerData,
-        type: $stateParams.type
+        owner: UserFactory.getCurrentUser()
       };
 
     }]);

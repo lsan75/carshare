@@ -6,14 +6,16 @@
     .factory('UserFactory', ['$q', '$state', 'Fire',
     function($q, $state, Fire) {
 
+      var currentUser = {};
+
       var usr = {
 
-        getUsers: function(type) {
+        getUsers: function() {
           var defer = $q.defer();
 
-          var db = Fire.db.child(type === 'proposer' ? 'passengers' : 'drivers');
-
-          db.once('value', function(data) {
+          var db = Fire.db.child('people');
+          var otherType = currentUser.type === 'proposer' ? 'chercher' : 'proposer';
+          db.orderByChild('type').equalTo(otherType).once('value', function(data) {
             var obj = data.val();
             var users = [];
             angular.forEach(obj, function(user, key) {
@@ -30,31 +32,38 @@
           return defer.promise;
         },
 
-        getOwner: function(type) {
+        getOwner: function() {
           var defer = $q.defer();
 
-          var db = Fire.db.child(type === 'proposer' ? 'drivers' : 'passengers');
+          var db = Fire.db.child('people');
           db.orderByChild('uid').equalTo(Fire.uid).once('value', function(data) {
             var obj = data.val();
-            var owner = [];
-            angular.forEach(obj, function(user, key) {
-              owner.push(
-                angular.extend(user, {id: key})
-              );
+            angular.forEach(obj, function(user) {
+              usr.setCurrentUser(user);
             });
-            defer.resolve(owner[0]);
+            defer.resolve('done');
           }, function() {
             defer.reject('');
             $state.go('home');
           });
 
           return defer.promise;
+        },
+
+        getCurrentUser: function() {
+          return currentUser;
+        },
+
+        setCurrentUser: function(user) {
+          currentUser = user;
         }
       };
 
       return {
         getUsers: usr.getUsers,
-        getOwner: usr.getOwner
+        getOwner: usr.getOwner,
+        getCurrentUser: usr.getCurrentUser,
+        setCurrentUser: usr.setCurrentUser
       };
 
     }]);
