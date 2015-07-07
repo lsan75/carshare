@@ -45,7 +45,6 @@
         createUser: function(creds) {
           var defer = $q.defer();
 
-          // log socket
           Fire.db.createUser({
             email    : creds.email,
             password : creds.password
@@ -81,8 +80,6 @@
         signin: function(creds) {
 
           var defer = $q.defer();
-
-          // log socket
 
           Fire.db.authWithPassword({
             email    : creds.email,

@@ -8,14 +8,7 @@
 
       $scope.home = {
         logTo: function(type) {
-
-          var currentUser = $window.localStorage.getItem('user');
-          if (currentUser) {
-            $state.go('main', {type: type});
-          } else {
-            $state.go('login', {type: type});
-          }
-
+          $state.go('login', {type: type});
         }
       };
 
