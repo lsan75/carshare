@@ -6,4 +6,43 @@
   position: relative;
   background-color: fade(@theme-color-map-dark, 95%);
 
+  .nav-tabs {
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    border-bottom: 1px solid fade(@base-color-white, 30%);
+    
+    a {
+      width: 50%;
+      display: block;
+
+      color: @base-color-white;
+      float: left;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+      .rem-calc(font-size, 14px);
+      position: relative;
+
+      padding: 0 1px 1px;
+
+      span {
+        display: block;
+
+        .rem-calc(height, 50px);
+        .rem-calc(line-height, 50px);
+      }
+
+      &.active{
+        span{
+          background: @theme-color-map;
+        }
+      }
+
+      &:first-child {
+       border-right: 1px solid fade(@base-color-white, 30%);
+      }
+
+    }
+  }
 }
