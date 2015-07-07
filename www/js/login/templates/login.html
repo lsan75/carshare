@@ -10,49 +10,53 @@
 
   <a ui-sref="home" class="logo"></a>
 
-  <form name="signin" ng-submit="login.signForm()" novalidate>
+  <form name="signin" class="form" ng-submit="login.signForm()" novalidate="true">
 
     <!-- Signin fields -->
     <div class="group-input">
-      <div class="input">
+
+      <div class="input-wrap">
         <label class="label" for="login">Email</label>
-        <input
-        type="email"
-        id="login"
-        ng-model="login.form.signin.email"
-        ng-required="true"
-        placeholder="Email">
+        <input class="input"
+               id="login"
+               type="text"
+               ng-model="login.form.signin.email"
+               ng-required="true"
+               placeholder="Email">
       </div>
 
-      <div class="input">
-        <label class="label" for="pass">Mot de passe</label>
-        <input
-        type="password"
-        id="pass"
-        ng-model="login.form.signin.password"
-        ng-required="true"
-        placeholder="Mot de passe">
+      <div class="input-wrap">
+        <label class="label" for="password">Mot de passe</label>
+        <input class="input"
+               id="password"
+               type="text"
+               ng-model="login.form.signin.password"
+               ng-required="true"
+               placeholder="Mot de passe">
       </div>
+
     </div>
 
     <!-- Common signup data -->
     <div class="group-input" ng-if="!login.signin">
 
-      <div class="input">
+      <div class="input-wrap w50">
         <label class="label" for="firstname">Prénom</label>
         <input
         type="text"
         id="firstname"
+        class="input"
         ng-model="login.form.common.firstname"
         ng-required="true"
         placeholder="Prénom">
       </div>
 
-      <div class="input">
+      <div class="input-wrap w50">
         <label class="label" for="firstname">Nom</label>
         <input
         type="text"
         id="lastname"
+        class="input"
         ng-model="login.form.common.lastname"
         ng-required="true"
         placeholder="Nom">
@@ -64,29 +68,41 @@
 
     <!-- Driver data -->
     <div class="group-input" ng-if="!login.signin && login.type === 'proposer'">
-      <div class="input">
-        <label class="label" for="vehicletype">Type véhicule</label>
-        <input
-        type="radio"
-        id="vehicletype"
-        ng-model="login.form.driver.vehicleType"
-        ng-required="true"
-        ng-value="'car'"> Voiture
+      <div class="input-wrap inline w50">
+        <div class="label">Type véhicule</div>
+        <div class="input-content">
+          <input
+          type="radio"
+          class="input-radio"
+          ng-model="login.form.driver.vehicleType"
+          id="option-type-car"
+          ng-required="true"
+          ng-value="'car'">
+          <label class="btn type-vehicle car" for="option-type-car"></label>
 
-        <input
-        type="radio"
-        ng-model="login.form.driver.vehicleType"
-        ng-required="true"
-        ng-value="'moto'"> Moto
+          <input
+          type="radio"
+          class="input-radio"
+          ng-model="login.form.driver.vehicleType"
+          id="option-type-motorcycle"
+          ng-required="true"
+          ng-value="'moto'">
+          <label class="btn type-vehicle motorcycle" for="option-type-motorcycle"></label>
+        </div>
+
       </div>
 
-      <div class="input">
+      <div class="input-wrap inline w50">
         <label class="label" for="availableseats">Nb. places disponible</label>
-        <input
-        type="number"
-        id="availableseats"
-        ng-model="login.form.driver.availableSeats"
-        palceholder="Nb places">
+
+        <div class="input-content">
+          <input
+          type="number"
+          id="availableseats"
+          class="input min"
+          ng-model="login.form.driver.availableSeats"
+          placeholder="0">
+        </div>
       </div>
     </div>
 
