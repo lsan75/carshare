@@ -3,15 +3,19 @@
 (function() {
 
   angular.module('carApp')
-    .factory('UserFactory', ['$q', '$state', 'Fire',
-    function($q, $state, Fire) {
+    .factory('UserFactory', ['$q', '$window', '$state', 'Fire',
+    function($q, $window, $state, Fire) {
 
-      var currentUser = {};
+      var currentUser = null;
 
       var usr = {
 
         getUsers: function() {
           var defer = $q.defer();
+
+          if(!currentUser) {
+            usr.getCurrentUser();
+          }
 
           var db = Fire.db.child('people');
           var otherType = currentUser.type === 'proposer' ? 'chercher' : 'proposer';
@@ -51,10 +55,12 @@
         },
 
         getCurrentUser: function() {
+          currentUser = JSON.parse($window.sessionStorage.getItem('user'));
           return currentUser;
         },
 
         setCurrentUser: function(user) {
+          $window.sessionStorage.setItem('user', JSON.stringify(user));
           currentUser = user;
         }
       };

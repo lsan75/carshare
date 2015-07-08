@@ -77,7 +77,7 @@
                 unbindMarkers.push(
                   google.maps.event.addListener(marker, 'click', function() {
                     infoWindow.setPosition(marker.position);
-                    infoWindow.setContent('<div>' + here + '</div>');
+                    infoWindow.setContent('<div class="popup-map">' + here + '</div>');
                     infoWindow.open(map, marker);
                   })
                 );
