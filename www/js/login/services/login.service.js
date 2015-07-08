@@ -26,9 +26,8 @@
         // signup
             log.createUser(form.signin).then(
               function(uid) {
-                Fire.uid = uid;
                 log.signin(form.signin).then(function() {
-                  log.addUserData(type, form).then(function() {
+                  log.addUserData(type, form, uid).then(function() {
                     defer.resolve('signed');
                   });
                 });
@@ -61,10 +60,12 @@
           return defer.promise;
         },
 
-        addUserData: function(type, form) {
+        addUserData: function(type, form, uid) {
           var defer = $q.defer();
+
+          form.common.address = null;
           var obj = {
-            uid: Fire.uid,
+            uid: uid,
             email: form.signin.email,
             common: form.common,
             type: type
@@ -98,7 +99,9 @@
             if (error) {
               defer.reject(error);
             } else {
-              Fire.uid = authData.uid;
+              Fire.owner = {
+                uid: authData.uid
+              };
               UserFactory.getOwner().then(function() {
                 defer.resolve(authData.uid);
               });

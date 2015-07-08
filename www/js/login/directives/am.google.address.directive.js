@@ -31,7 +31,9 @@
 
               $timeout(function() {
                 scope.login.form.common.street = place.name;
-                scope.login.form.common.postCode = place.address_components[6].long_name;
+                var post = place.address_components.length < 7 ?
+                  null : place.address_components[6].long_name;
+                scope.login.form.common.postCode = post;
                 scope.login.form.common.city = place.vicinity;
               });
             }
