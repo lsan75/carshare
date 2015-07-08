@@ -17,7 +17,6 @@
         link: function(scope, elem) {
 
           var map;
-          var markers = [];
           var unbindMarkers = [];
           var infoWindow;
 
@@ -68,19 +67,18 @@
 
               GeocodeFactory.getLocation(here).then(function(res) {
 
-                markers.push(new google.maps.Marker({
+                var marker = new google.maps.Marker({
                   map: map,
                   position: res.geometry.location,
                   icon: image,
                   data: marker
-                }));
+                });
 
                 unbindMarkers.push(
-                  google.maps.event.addListener(markers[markers.length - 1], 'click', function() {
-                    var theMarker = markers[markers.length - 1];
-                    infoWindow.setPosition(theMarker.position);
+                  google.maps.event.addListener(marker, 'click', function() {
+                    infoWindow.setPosition(marker.position);
                     infoWindow.setContent('<div>' + here + '</div>');
-                    infoWindow.open(map, theMarker);
+                    infoWindow.open(map, marker);
                   })
                 );
               });
