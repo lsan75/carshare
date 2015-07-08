@@ -19,6 +19,10 @@
     -webkit-transition: opacity 0.5s;
     transition: opacity 0.5s;
     display: block;
+
+    @media @base-media-extra-small {
+      background: fade(@theme-color-map-dark, 95%);
+    }
   }
 
   .form-account {
@@ -28,6 +32,11 @@
     bottom: 0;
     right: 0;
     width: 50%;
+
+    @media @base-media-extra-small {
+      width: 100%;
+      overflow: auto;
+    }
 
     &:before {
       content: '';
@@ -46,7 +55,14 @@
 
       background-color: @theme-color-map-dark;
 
+
+      @media @base-media-extra-small {
+        display: none;
+      }
+
     }
+
+
 
     .form{
       position: relative;
