@@ -105,7 +105,7 @@
             }
           },
           {
-            remember: 'none' // or 'sessionOnly'
+            remember: 'sessionOnly' // or 'none'
           });
 
           return defer.promise;
