@@ -6,26 +6,19 @@
     .factory('UserFactory', ['$q', '$window', '$state', 'Fire',
     function($q, $window, $state, Fire) {
 
-      var currentUser = null;
-
       var usr = {
 
         getUsers: function() {
           var defer = $q.defer();
-
-          if(!currentUser) {
-            usr.getCurrentUser();
-          }
+          usr.testCurrentUser();
 
           var db = Fire.db.child('people');
-          var otherType = currentUser.type === 'proposer' ? 'chercher' : 'proposer';
+          var otherType = Fire.owner.type === 'proposer' ? 'chercher' : 'proposer';
           db.orderByChild('type').equalTo(otherType).once('value', function(data) {
             var obj = data.val();
             var users = [];
-            angular.forEach(obj, function(user, key) {
-              users.push(
-                angular.extend(user, {id: key})
-              );
+            angular.forEach(obj, function(user) {
+              users.push(user);
             });
             defer.resolve(users);
           }, function() {
@@ -40,7 +33,7 @@
           var defer = $q.defer();
 
           var db = Fire.db.child('people');
-          db.orderByChild('uid').equalTo(Fire.uid).once('value', function(data) {
+          db.orderByChild('uid').equalTo(Fire.owner.uid).once('value', function(data) {
             var obj = data.val();
             angular.forEach(obj, function(user) {
               usr.setCurrentUser(user);
@@ -54,20 +47,58 @@
           return defer.promise;
         },
 
+        testCurrentUser: function() {
+          if(!Fire.owner) {
+            usr.getCurrentUser();
+          }
+        },
+
+        updateOwner: function(data) {
+          var defer = $q.defer();
+          usr.testCurrentUser();
+
+          var db = Fire.db.child('people');
+          db.orderByChild('uid').equalTo(Fire.owner.uid).once('value', function(res) {
+            angular.forEach(res.val(), function(res, key) {
+              var owner = db.child(key);
+
+              data.common.address = null;
+              var updateObj = {
+                common: data.common
+              };
+
+              if(data.driver) {
+                angular.extend(updateObj, {driver: data.driver});
+              }
+
+              owner.update(updateObj, function(error) {
+                if(error) {
+                  defer.reject(error);
+                } else {
+                  defer.resolve('done');
+                }
+              });
+            });
+          });
+
+          return defer.promise;
+        },
+
         getCurrentUser: function() {
-          currentUser = JSON.parse($window.sessionStorage.getItem('user'));
-          return currentUser;
+          Fire.owner = JSON.parse($window.sessionStorage.getItem('user'));
+          return Fire.owner;
         },
 
         setCurrentUser: function(user) {
           $window.sessionStorage.setItem('user', JSON.stringify(user));
-          currentUser = user;
+          Fire.owner = user;
         }
       };
 
       return {
         getUsers: usr.getUsers,
         getOwner: usr.getOwner,
+        updateOwner: usr.updateOwner,
         getCurrentUser: usr.getCurrentUser,
         setCurrentUser: usr.setCurrentUser
       };

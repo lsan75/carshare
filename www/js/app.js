@@ -44,7 +44,7 @@
   .value('Fire', {
     path: 'https://dazzling-heat-9916.firebaseio.com',
     db: null,
-    uid: null
+    owner: null
   })
 
   .run(['Fire',
