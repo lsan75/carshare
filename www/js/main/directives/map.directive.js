@@ -18,6 +18,8 @@
 
           var map;
           var markers = [];
+          var unbindMarkers = [];
+          var infoWindow;
 
           var dir = {
 
@@ -26,6 +28,7 @@
               GeocodeFactory.getLocation(address).then(function(res) {
                 var lats = res.geometry.location;
                 dir.setMap(lats);
+                dir.setInfoWindow();
               });
             },
 
@@ -68,21 +71,30 @@
                 markers.push(new google.maps.Marker({
                   map: map,
                   position: res.geometry.location,
-                  icon: image
+                  icon: image,
+                  data: marker
                 }));
 
-                google.maps.event.addListener(markers[markers.length - 1], 'click', function() {
-                  map.setZoom(16);
-                  map.setCenter(this.getPosition());
-                });
+                unbindMarkers.push(
+                  google.maps.event.addListener(markers[markers.length - 1], 'click', function() {
+                    var theMarker = markers[markers.length - 1];
+                    infoWindow.setPosition(theMarker.position);
+                    infoWindow.setContent('<div>' + here + '</div>');
+                    infoWindow.open(map, theMarker);
+                  })
+                );
               });
+            },
+
+            setInfoWindow: function() {
+              infoWindow = new google.maps.InfoWindow();
             }
 
           };
 
           scope.$on('$destroy', function() {
-            angular.forEach(markers, function(marker) {
-              google.maps.event.removeListener(marker);
+            angular.forEach(unbindMarkers, function(marker) {
+              marker.remove();
             });
           });
 

@@ -6,7 +6,6 @@
     .factory('GeocodeFactory', ['$q', function($q) {
 
       var geocoder = new google.maps.Geocoder();
-
       var geo = {
         getLocation: function(address) {
           var defer = $q.defer();
