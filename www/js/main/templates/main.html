@@ -2,7 +2,7 @@
 
   <header class="main-header">
     <div class="header-left">
-      <a class="logo"></a>
+      <a class="logo" ui-sref="home"></a>
     </div>
 
 
@@ -10,7 +10,12 @@
       <nav class="nav">
         <ul>
           <li>
-            <a href=""><span>Compte</span><i class="fa fa-bars"></i></a>
+            <a href="" ng-click="main.accountOpen = !main.accountOpen">
+              <span>Compte</span>
+              <i class="fa"
+                ng-class="{'fa-bars': !main.accountOpen, 'fa-close': main.accountOpen}">
+              </i>
+            </a>
           </li>
         </ul>
       </nav>
@@ -19,111 +24,17 @@
 
   <map input="main.users" owner="main.owner"></map>
 
-  <div class="popup">
+  <div class="popup" ng-show="main.accountOpen">
     <div class="popup-bg popup-ready"></div>
 
     <div class="form-account">
 
-      <form name="signin" class="form" ng-submit="login.signForm()" novalidate="true">
-
-        <!-- Signin fields -->
-        <div class="group-input">
-
-          <div class="input-wrap">
-            <label class="label" for="login">Email</label>
-            <input class="input"
-                   id="login"
-                   type="text"
-                   ng-model="login.form.signin.email"
-                   ng-required="true"
-                   placeholder="Email">
-          </div>
-
-          <div class="input-wrap">
-            <label class="label" for="password">Mot de passe</label>
-            <input class="input"
-                   id="password"
-                   type="password"
-                   ng-model="login.form.signin.password"
-                   ng-required="true"
-                   placeholder="Mot de passe">
-          </div>
-
-        </div>
-
-        <!-- Common signup data -->
-        <div class="group-input" ng-if="!login.signin">
-
-          <div class="input-wrap w50">
-            <label class="label" for="firstname">Prénom</label>
-            <input
-            type="text"
-            id="firstname"
-            class="input"
-            ng-model="login.form.common.firstname"
-            ng-required="true"
-            placeholder="Prénom">
-          </div>
-
-          <div class="input-wrap w50">
-            <label class="label" for="firstname">Nom</label>
-            <input
-            type="text"
-            id="lastname"
-            class="input"
-            ng-model="login.form.common.lastname"
-            ng-required="true"
-            placeholder="Nom">
-          </div>
-
-          <am-google-address></am-google-address>
-
-        </div>
-
-        <!-- Driver data -->
-        <div class="group-input" ng-if="!login.signin && login.type === 'proposer'">
-          <div class="input-wrap inline w50">
-            <div class="label">Type véhicule</div>
-            <div class="input-content">
-              <input
-              type="radio"
-              class="input-radio"
-              ng-model="login.form.driver.vehicleType"
-              id="option-type-car"
-              ng-required="true"
-              ng-value="'car'">
-              <label class="btn type-vehicle car" for="option-type-car"></label>
-
-              <input
-              type="radio"
-              class="input-radio"
-              ng-model="login.form.driver.vehicleType"
-              id="option-type-motorcycle"
-              ng-required="true"
-              ng-value="'moto'">
-              <label class="btn type-vehicle motorcycle" for="option-type-motorcycle"></label>
-            </div>
-
-          </div>
-
-          <div class="input-wrap inline w50">
-            <label class="label" for="availableseats">Nb. places disponible</label>
-
-            <div class="input-content">
-              <input
-              type="number"
-              id="availableseats"
-              class="input min"
-              ng-model="login.form.driver.availableSeats"
-              placeholder="0">
-            </div>
-          </div>
-        </div>
-
-        <!-- validate button -->
-        <div>
-          <input type="submit" class="button center" ng-disabled="signin.$invalid">
-        </div>
+      <form
+        name="signin"
+        class="form"
+        ng-submit="main.signForm()"
+        novalidate
+        ng-include="'js/login/templates/user.form.html'">
 
       </form>
 
