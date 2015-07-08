@@ -1,54 +1,55 @@
 // Variables
 // --------------------------------------------------
-@h-header-height: 60px;
-@h-header-background: #272b35;
+@h-header-height: 56px;
+@h-header-background: @base-color-white;
 @h-header-color: @base-color-blue;
 @h-header-border-color: @base-color-white;
 
 /** Header
  ************************************************** */
-.page-header {
+.main-header {
 
   .user-select(none);
   .rem-calc(height, @h-header-height);
-  background: @h-header-background;
-  .rem-calc(padding-top, 12);
+  background: fade(@h-header-background, 90%);
+  .rem-calc(padding-top, 3);
   .rem-calc(padding-right, 20);
   .rem-calc(padding-bottom, 12);
   .rem-calc(padding-left, 20);
   .rem-calc(line-height, @h-header-height - 24);
   width: 100%;
-
   .drop-shadow(0, 1px, 10px, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: @base-z-index-10;
 
-  * {
-    color: #FFFFFF;
+  .logo {
+    width: 246px;
+    height: 75px;
+    background-image: url("../img/logo.header.png");
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    display: block;
+    position: relative;
+    z-index: 2;
   }
+
   .header-left {
     float: left;
-    .nav {
-      float: left;
-    }
-    .title {
-      float: left;
-      .rem-calc(line-height, @h-header-height - 24);
-      .rem-calc(padding-top, 0);
-      .rem-calc(padding-right, 0);
-      .rem-calc(padding-bottom, 0);
-      .rem-calc(padding-left, 10);
-      font-weight: @base-font-weight-ultra-bold;
-      span {
-        color: @h-header-color;
-      }
-    }
+
   }
+
   .header-right {
     float: right;
+
     .nav {
-      .rem-calc(padding-top, 10);
+      .rem-calc(padding-top, 20);
       .rem-calc(padding-right, 0);
-      .rem-calc(padding-bottom, 10);
+      .rem-calc(padding-bottom, 20);
       .rem-calc(padding-left, 0);
+      float: left;
       ul {
         li {
           float: left;
@@ -58,8 +59,11 @@
             .rem-calc(padding-right, 10);
             .rem-calc(padding-bottom, 0);
             .rem-calc(padding-left, 10);
-
             .rem-calc(line-height, 16);
+
+            color: @theme-color-map;
+            text-decoration: none;
+            text-transform: uppercase;
 
             display: block;
             .fa {
@@ -71,38 +75,6 @@
     }
   }
 
-  .header-search {
-    float: left;
-    width: 50%;
-    .rem-calc(margin-top, 0);
-    .rem-calc(margin-right, 0);
-    .rem-calc(margin-bottom, 0);
-    .rem-calc(margin-left, 40);
-    position: relative;
-
-    .search-global {
-      border-bottom: 1px solid @h-header-border-color;
-      .form-control {
-        background: transparent;
-        border: 0;
-        .rem-calc(font-weight, @base-font-weight-light);
-        width: 100%;
-        &:focus + .btn.search {
-          color: @h-header-color;
-        }
-      }
-      .btn.submit {
-        display: none;
-      }
-      .btn.search {
-        position: absolute;
-        .rem-calc(right, 8);
-        top: 40%;
-        .rem-calc(margin-top, -8);
-        color: @h-header-border-color;
-      }
-    }
-  }
 }
 
 /* ** End Header ** */
