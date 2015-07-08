@@ -3,8 +3,8 @@
 (function() {
 
   angular.module('carApp')
-    .directive('map', ['$timeout', 'MapOptions', 'GeocodeFactory',
-    function($timeout, MapOptions, GeocodeFactory) {
+    .directive('map', ['$timeout', '$compile', 'MapOptions', 'GeocodeFactory',
+    function($timeout, $compile, MapOptions, GeocodeFactory) {
 
       return {
         restrict: 'E',
@@ -53,9 +53,15 @@
             },
 
             getIcon: function(marker) {
-              return marker.type === 'proposer' ?
-                'icone-car.png' :
-                'icone-member.png';
+              if(scope.owner.type === 'proposer') {
+                return marker.type === 'proposer' ?
+                  'icone-car-darck.png' :
+                  'icone-member.light.min.png';
+              } else {
+                return marker.type === 'chercher' ?
+                  'icone-member.light.png' :
+                  'icone-car.darck.min.png';
+              }
             },
 
             setMarker: function(marker) {
@@ -67,7 +73,7 @@
 
               GeocodeFactory.getLocation(here).then(function(res) {
 
-                var marker = new google.maps.Marker({
+                var myMarker = new google.maps.Marker({
                   map: map,
                   position: res.geometry.location,
                   icon: image,
@@ -75,10 +81,15 @@
                 });
 
                 unbindMarkers.push(
-                  google.maps.event.addListener(marker, 'click', function() {
+                  google.maps.event.addListener(myMarker, 'click', function() {
+                    var subscope = scope.$new();
+                    subscope.marker = marker;
+                    var content =
+                      $compile('<div><am-popupmap data="marker"></am-popupmap></div>')(subscope);
+
                     infoWindow.setPosition(marker.position);
-                    infoWindow.setContent('<div class="popup-map">' + here + '</div>');
-                    infoWindow.open(map, marker);
+                    infoWindow.setContent(content[0]);
+                    infoWindow.open(map, myMarker);
                   })
                 );
               });
