@@ -1,7 +1,8 @@
-.group-input{
+.group-input {
   overflow: hidden;
   clear: both;
 }
+
 .input-wrap {
   padding: 0;
   .rem-calc(margin-top, 16px);
@@ -19,7 +20,7 @@
   &.w50 {
     width: 48%;
     float: left;
-    & + .w50{
+    & + .w50 {
       margin-left: 2%;
     }
   }
@@ -31,7 +32,7 @@
     color: fade(@base-color-white, 30%);
     display: block;
 
-    .inline&{
+    .inline& {
       .rem-calc(line-height, 22px);
       padding-bottom: 0;
       float: left;
@@ -47,7 +48,7 @@
     .rem-calc(font-size, 16px);
     .rem-calc(line-height, 18px);
 
-    &.min{
+    &.min {
       width: 60px;
     }
   }
@@ -55,7 +56,7 @@
   .input-radio[type="radio"] {
     position: absolute;
     clip: rect(0, 0, 0, 0);
-    & + label{
+    & + label {
       cursor: pointer;
     }
     &:checked + label {
@@ -64,7 +65,7 @@
     }
   }
 
-  .type-vehicle{
+  .type-vehicle {
     width: 30px;
     height: 24px;
     margin: 0 5px;
@@ -76,15 +77,59 @@
     background-repeat: no-repeat;
     background-position: 50% 100%;
 
-    &.motorcycle{
+    &.motorcycle {
       background-image: url('../img/icons/moto.sprite.png');
     }
   }
 
-  .input-content{
-    .inline&{
+  .input-content {
+    .inline& {
       float: right;
     }
   }
 
 }
+
+.button {
+  color: @theme-color-map;
+  .rem-calc(font-size, 14px);
+  border: 1px solid @theme-color-map;
+  display: block;
+  cursor: pointer;
+  .rounded(5px);
+  .rem-calc(margin, 10px);
+  .rem-calc(padding-top, 8px);
+  .rem-calc(padding-bottom, 8px);
+  .rem-calc(padding-left, 16px);
+  .rem-calc(padding-right, 16px);
+  .rem-calc(min-width, 200px);
+  text-transform: uppercase;
+  background: transparent;
+
+  .transition-duration(0.5s);
+
+  &.center {
+    .rem-calc(margin-top, 10px);
+    .rem-calc(margin-bottom, 10px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &[disabled="disabled"] {
+    color: @base-color-grey;
+    border-color: @base-color-grey;
+    cursor: default;
+    &:hover {
+      color: @base-color-grey;
+      background-color: transparent;
+      border-color: @base-color-grey;
+    }
+  }
+
+  &:hover {
+    color: @base-color-grey;
+    background-color: fade(@base-color-white, 90%);
+    border-color: @base-color-white;
+  }
+}
+
