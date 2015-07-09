@@ -11,6 +11,10 @@
 
   color: @base-color-grey;
 
+  @media @base-media-extra-small {
+    .rem-calc(width, 280px);
+  }
+
   .popup-header {
     overflow: hidden;
     .left {
@@ -59,6 +63,7 @@
 
     .info {
       padding-top: 10px;
+      overflow: hidden;
 
       .vehicle-type {
         overflow: hidden;
@@ -66,8 +71,8 @@
         li {
           float: left;
           &.ico {
-            .rem-calc(width, 30px);
-            .rem-calc(height, 24px);
+            width: 30px;
+            height: 24px;
             .rem-calc(margin-right, 5px);
 
             background-repeat: no-repeat;
@@ -89,14 +94,14 @@
         overflow: hidden;
         float: right;
         li {
-          .rem-calc(line-height, 24px);
+          line-height: 24px;
           .rem-calc(font-size, 16px);
           color: @theme-color-map;
           font-weight: @base-font-weight-bold;
         }
         .member {
-          .rem-calc(width, 30px);
-          .rem-calc(height, 24px);
+          width: 30px;
+          height: 24px;
           .rem-calc(margin-right, 5px);
 
           background-repeat: no-repeat;
