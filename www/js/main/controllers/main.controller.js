@@ -22,6 +22,11 @@
               }, 3 * 1000);
             }
           );
+        },
+
+        closeForm: function() {
+          $scope.main.accountOpen = !$scope.main.accountOpen;
+          $scope.main.owner = UserFactory.getCurrentUser();
         }
       };
 

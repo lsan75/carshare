@@ -11,11 +11,6 @@
         templateUrl: 'js/main/templates/popup.map.html',
         scope: {
           data: '='
-        },
-        link: function (scope, elem) {
-
-          console.log(scope);
-
         }
       };
 
