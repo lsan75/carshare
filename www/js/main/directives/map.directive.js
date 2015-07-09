@@ -3,8 +3,8 @@
 (function() {
 
   angular.module('carApp')
-    .directive('map', ['$timeout', '$compile', 'MapOptions', 'GeocodeFactory',
-    function($timeout, $compile, MapOptions, GeocodeFactory) {
+    .directive('map', ['$timeout', '$compile', '$q', 'MapOptions', 'GeocodeFactory',
+    function($timeout, $compile, $q, MapOptions, GeocodeFactory) {
 
       return {
         restrict: 'E',
@@ -19,6 +19,7 @@
           var map;
           var unbindMarkers = [];
           var infoWindow;
+          var markerOwner;
 
           var dir = {
 
@@ -39,7 +40,9 @@
                 angular.forEach(scope.input, function(user) {
                   dir.setMarker(user);
                 });
-                dir.setMarker(scope.owner);
+                dir.setMarker(scope.owner).then(function(marker) {
+                  markerOwner = marker;
+                });
               });
             },
 
@@ -65,7 +68,7 @@
             },
 
             setMarker: function(marker) {
-
+              var defer = $q.defer();
               var here = dir.formatAddress(marker);
               var image = {
                 url: 'img/icons/' + dir.getIcon(marker)
@@ -92,7 +95,11 @@
                     infoWindow.open(map, myMarker);
                   })
                 );
+
+                defer.resolve(myMarker);
               });
+
+              return defer.promise;
             },
 
             setInfoWindow: function() {
@@ -100,6 +107,14 @@
             }
 
           };
+
+          scope.$watch('owner', function() {
+            if(!markerOwner) { return; }
+            var here = dir.formatAddress(scope.owner);
+            GeocodeFactory.getLocation(here).then(function(res) {
+              markerOwner.setPosition(res.geometry.location);
+            });
+          });
 
           scope.$on('$destroy', function() {
             angular.forEach(unbindMarkers, function(marker) {
