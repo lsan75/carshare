@@ -6,6 +6,103 @@
 .popup-map {
   border: 0;
   border-radius: 0.5em;
-  padding: 1em;
-  width: 240px;
+  .rem-calc(width, 300px);
+  .rem-calc(padding, 10px);
+
+  color: @base-color-grey;
+
+  .popup-header {
+    overflow: hidden;
+    .left {
+      float: left;
+      .profile {
+        width: 32px;
+        height: 48px;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        background-image: url("../img/icons/icone-member.light.min.flat.png");
+        &.car {
+          background-image: url("../img/icons/icone-car.light.min.flat.png");
+        }
+        &.moto {
+          background-image: url("../img/icons/icone-motorcycle.light.min.flat.png");
+        }
+      }
+    }
+    .right {
+      float: left;
+      margin-left: 10px;
+      .name {
+        .rem-calc(font-size, 22px);
+        .rem-calc(padding-top, 10px);
+        .rem-calc(line-height, 26px);
+
+        font-weight: @base-font-weight-medium;
+        text-transform: uppercase;
+        color: @base-color-grey;
+      }
+      .email {
+        .rem-calc(font-size, 12px);
+        //.rem-calc(padding-top, 10px);
+        font-weight: @base-font-weight-light;
+        color: fade(@base-color-grey, 50%);
+      }
+    }
+  }
+  .popup-body {
+    overflow: hidden;
+
+    .info {
+      padding-top: 10px;
+
+      .vehicle-type {
+        overflow: hidden;
+        float: left;
+        li {
+          float: left;
+          &.ico {
+            .rem-calc(width, 30px);
+            .rem-calc(height, 24px);
+            .rem-calc(margin-right, 5px);
+
+            background-repeat: no-repeat;
+            background-position: 50% 100%;
+            background-image: url("../img/icons/info.car.sprite.png");
+
+            &.moto {
+              background-image: url("../img/icons/info.moto.sprite.png");
+            }
+
+            &.active {
+              background-position: 50% 0;
+            }
+          }
+        }
+      }
+
+      .available-seats {
+        overflow: hidden;
+        float: right;
+        li {
+          .rem-calc(line-height, 24px);
+          .rem-calc(font-size, 16px);
+          color: @theme-color-map;
+          font-weight: @base-font-weight-bold;
+        }
+        .member {
+          .rem-calc(width, 30px);
+          .rem-calc(height, 24px);
+          .rem-calc(margin-right, 5px);
+
+          background-repeat: no-repeat;
+          background-position: 50% 100%;
+          background-image: url("../img/icons/member.png");
+
+          display: block;
+          float: right;
+        }
+      }
+    }
+
+  }
 }

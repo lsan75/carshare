@@ -1,3 +1,35 @@
 <div class="popup-map">
-{{data.email}}
+  <div class="popup-header">
+    <div class="left">
+
+      <div class="profile"
+           ng-class="{member: !data.driver, moto: data.driver.vehicleType == 'moto', car: data.driver.vehicleType == 'car'}"></div>
+
+    </div>
+    <div class="right">
+      <div class="name">{{data.common.firstname}} {{data.common.lastname}}</div>
+      <div class="email">{{data.email}}</div>
+    </div>
+  </div>
+
+  <div class="popup-body">
+    <div class="address">
+      <strong class="street">{{data.common.street}}</strong>
+
+      <div class="postcode-city">{{data.common.postCode}} {{data.common.city}}</div>
+    </div>
+
+    <div class="info" ng-if="data.driver">
+      <ul class="vehicle-type">
+        <li class="ico car" ng-class="{active: data.driver.vehicleType == 'car'}"></li>
+        <li class="ico moto" ng-class="{active: data.driver.vehicleType == 'moto'}"></li>
+      </ul>
+
+      <ul class="available-seats">
+        <li>
+          {{data.driver.availableSeats}} <i class="member"></i>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
