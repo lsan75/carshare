@@ -1,6 +1,6 @@
 .login-container {
 
-  overflow: hidden;
+  overflow: auto;
   height: 100%;
   display: block;
   position: relative;
@@ -11,7 +11,11 @@
     display: block;
     overflow: hidden;
     border-bottom: 1px solid fade(@base-color-white, 30%);
-    
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+
     a {
       width: 50%;
       display: block;
@@ -47,16 +51,44 @@
   }
 
   .logo {
-    background: url('../img/logo.05.png') 50% 50% no-repeat;
-    width: 150px;
-    height: 150px;
+    background: url('../img/logo.05.png') 50% 70% no-repeat;
+    .rem-calc(width, 150px);
+    .rem-calc(height, 150px);
     margin: 0 auto;
     display: block;
+
+    position: absolute;
+    .rem-calc(top, 50px);
+    left: 0;
+    right: 0;
+
+    background-size: 50%;
+
+    @media @base-media-extra-small {
+      background-size: 40%;
+      .rem-calc(height, 100px);
+    }
+
+  }
+
+  .form-wrap{
+    position: absolute;
+    .rem-calc(top, 200px);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    @media @base-media-extra-small {
+      .rem-calc(top, 150px);
+    }
   }
 
   .form{
     width: 40%;
     margin: 0 auto;
+    @media @base-media-extra-small {
+      width: 80%;
+    }
   }
 
 }

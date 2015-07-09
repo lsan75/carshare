@@ -57,12 +57,16 @@
       font-weight: @base-font-weight-light;
 
       @media @base-media-extra-small {
-        .rem-calc(font-size, 26px);
+        .rem-calc(font-size, 22px);
       }
     }
 
     &.offer {
       margin: 0;
+
+      .text{
+        .rem-calc(padding-right, 50px);
+      }
 
       .bg {
         background-color: @theme-color-map-dark;
@@ -79,6 +83,10 @@
 
     &.search {
       margin: 0;
+
+      .text{
+        .rem-calc(padding-left, 50px);
+      }
 
       .bg {
         background-color: @theme-color-map;
