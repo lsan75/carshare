@@ -15,11 +15,19 @@
   var inject      = require('gulp-inject');
   var bowerFiles  = require('main-bower-files');
   var series      = require('stream-series');
+  var clean       = require('gulp-clean');
+
+  var filter      = require('gulp-filter');
+  var cssmin      = require('gulp-minify-css');
+  var concat      = require('gulp-concat');
+  var ngAnnotate  = require('gulp-ng-annotate');
+  var uglify      = require('gulp-uglify');
 
 /**
  * Env
  **/
   var env = {
+    base:         __dirname + '/www',
     index:        __dirname + '/www/index.html',
     less:         __dirname + '/www/less/style.less',
     lesssources:  __dirname + '/www/less/**/*.less',
@@ -27,7 +35,8 @@
     stylesources: __dirname + '/www/css/**/*.css',
     mainapp:      __dirname + '/www/js/app.js',
     js:           __dirname + '/www/js/**/*.js',
-    port: 9000
+    port: 9000,
+    dist:         __dirname + '/dist'
   };
   var bowerOptions = {
     base: __dirname + '/bower_components',
@@ -43,10 +52,71 @@
 
 /******************************************************************************
 *
+* CLEAN
+*
+*******************************************************************************/
+  gulp.task('clean', function() {
+    return gulp.src(env.dist)
+      .pipe(clean());
+  });
+
+/******************************************************************************
+*
 * BUILD
 *
 *******************************************************************************/
+  gulp.task('build', [
+    'less',
+    'copyFiles',
+    'uglify',
+    'cssmin'
+  ], build);
 
+  function build() {
+    var opt = {
+      ignorePath: 'dist',
+      addRootSlash: false
+    };
+    return gulp.src(env.index)
+     .pipe(replace(/<!-- (.*?):js -->([\S\s]*?)<!-- endinject -->/gmi, '<!-- $1:js -->\n<!-- endinject -->'))
+     .pipe(replace(/<!-- (.*?):css -->([\S\s]*?)<!-- endinject -->/gmi, '<!-- $1:css -->\n<!-- endinject -->'))
+     .pipe(inject(gulp.src(env.dist + '/min/*.min.css'), opt))
+     .pipe(inject(gulp.src(env.dist + '/min/*.min.js'), opt))
+     .pipe(gulp.dest(env.dist));
+  }
+
+
+  gulp.task('copyFiles', function () {
+    return gulp.src([
+        env.base + '/**/*.*',
+        '!**/*.{js,css,less}',
+        '!' + env.base + '/bower_components'
+      ], {base: env.base})
+      .pipe(gulp.dest(env.dist));
+  });
+
+   gulp.task('uglify', function() {
+    var files   = bowerFiles(bowerOptions);
+    files.push(env.mainapp);
+    files.push(env.js);
+
+    return gulp.src(files)
+      .pipe(filter('**/*.js'))
+      .pipe(concat('app.min.js'))
+      .pipe(ngAnnotate())
+      .pipe(uglify({mangle: false}))
+      .pipe(gulp.dest(env.dist + '/min'));
+  });
+
+  gulp.task('cssmin', function() {
+    var files   = bowerFiles(bowerOptions);
+    files.push(env.stylesources);
+    return gulp.src(files)
+      .pipe(filter('**/*.css'))
+      .pipe(concat('style.min.css'))
+      .pipe(cssmin())
+      .pipe(gulp.dest(env.dist + '/min/'));
+  });
 /******************************************************************************
 *
 * Unit tests
