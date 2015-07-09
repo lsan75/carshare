@@ -90,7 +90,7 @@
     return gulp.src([
         env.base + '/**/*.*',
         '!**/*.{js,css,less}',
-        '!' + env.base + '/bower_components'
+        '!' + env.base + '/bower_components/**/*.*'
       ], {base: env.base})
       .pipe(gulp.dest(env.dist));
   });
