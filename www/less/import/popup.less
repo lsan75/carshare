@@ -1,7 +1,7 @@
 .popup {
 
   position: fixed;
-  top: @h-header-height;
+  .rem-calc(top, @h-header-height);
   left: 0;
   right: 0;
   bottom: 0;
@@ -28,7 +28,7 @@
   .form-account {
     position: fixed;
     z-index: @base-z-index-5;
-    top: @h-header-height;
+    .rem-calc(top, @h-header-height);
     bottom: 0;
     right: 0;
     width: 50%;
@@ -69,7 +69,8 @@
       z-index:  @base-z-index-20 + 2;
       width: 70%;
       min-width: 200px;
-      margin: 20px auto 0 auto;
+      margin: 0 auto 0 auto;
+      padding-top: 20px;
     }
   }
 
