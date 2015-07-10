@@ -56,14 +56,21 @@
             },
 
             getIcon: function(marker) {
+              var vehicleType;
+              if (marker.driver) {
+                vehicleType = marker.driver.vehicleType === 'moto' ?
+                  'motorcycle' :
+                  'car';
+              }
+
               if(scope.owner.type === 'proposer') {
                 return marker.type === 'proposer' ?
-                  'icone-car-darck.png' :
+                  'icone-' + vehicleType + '.dark.png' :
                   'icone-member.light.min.png';
               } else {
                 return marker.type === 'chercher' ?
                   'icone-member.light.png' :
-                  'icone-car.darck.min.png';
+                  'icone-' + vehicleType + '.dark.min.png';
               }
             },
 

@@ -1,9 +1,9 @@
 <section class="login-container" ng-class="{signin: login.signin, signup: !login.signin }">
 
   <nav class="nav-tabs">
-    <a href="" class="signin" ng-class="{active: login.signin}" ng-click="login.signin = true">
+    <a href="" class="signin" ng-class="{active: login.signin}" ng-click="login.signin = true; login.errorMessage = ''">
       <span>Connexion</span></a>
-    <a href="" class="signup" ng-class="{active: !login.signin}" ng-click="login.signin = false">
+    <a href="" class="signup" ng-class="{active: !login.signin}" ng-click="login.signin = false; login.errorMessage = ''">
       <span>Nouveau compte</span>
     </a>
   </nav>

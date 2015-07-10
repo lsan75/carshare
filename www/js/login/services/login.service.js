@@ -3,8 +3,8 @@
 (function() {
 
   angular.module('carApp')
-    .factory('LoginFactory', ['$state', '$window', '$q', 'Fire', 'UserFactory',
-    function($state, $window, $q, Fire, UserFactory) {
+    .factory('LoginFactory', ['$q', 'Fire', 'UserFactory',
+    function($q, Fire, UserFactory) {
 
       var log = {
 
@@ -18,8 +18,8 @@
               function() {
                 defer.resolve('signed in');
               },
-              function(error) {
-                defer.reject(error);
+              function(msg) {
+                defer.reject(msg);
               });
           } else {
 
@@ -32,8 +32,8 @@
                   });
                 });
               },
-              function(error) {
-                defer.reject('Error creating user:', error);
+              function(msg) {
+                defer.reject(msg);
               });
 
           }
@@ -51,7 +51,7 @@
             password : creds.password
           }, function(error, userData) {
             if (error) {
-              defer.reject(error);
+              defer.reject(error.message);
             } else {
               defer.resolve(userData.uid);
             }
@@ -78,7 +78,7 @@
           var child = Fire.db.child('people');
           child.push(obj, function(error) {
             if (error) {
-              defer.reject('');
+              defer.reject(error.message);
             } else {
               UserFactory.setCurrentUser(obj);
               defer.resolve('');

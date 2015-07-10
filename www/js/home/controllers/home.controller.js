@@ -3,8 +3,8 @@
 (function() {
 
   angular.module('carApp')
-    .controller('HomeController', ['$scope', '$window', '$state',
-    function($scope, $window, $state) {
+    .controller('HomeController', ['$scope', '$state',
+    function($scope, $state) {
 
       $scope.home = {
         logTo: function(type) {
