@@ -18,8 +18,8 @@
               function() {
                 defer.resolve('signed in');
               },
-              function() {
-                defer.reject('wrong creds');
+              function(error) {
+                defer.reject(error);
               });
           } else {
 
@@ -97,7 +97,7 @@
             password : creds.password
           }, function(error, authData) {
             if (error) {
-              defer.reject(error);
+              defer.reject(error.message);
             } else {
               Fire.owner = {
                 uid: authData.uid

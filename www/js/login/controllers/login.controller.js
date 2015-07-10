@@ -14,6 +14,7 @@
           driver: {}
         },
         signin: true,
+        invalidCreds: false,
 
         signForm: function() {
 
@@ -26,7 +27,8 @@
               $state.go('main', {type: $state.params.type});
             },
             function(error) {
-
+              $scope.login.errorMessage = error;
+              $scope.login.invalidCreds = true;
             }
           );
 
