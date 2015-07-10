@@ -6,7 +6,7 @@ wwww/js/app.js :
 .value('Fire', {
     path: 'https://dazzling-heat-9916.firebaseio.com',
 
-# Build project with commande : gulp build
+# Build project with command line : gulp build
 
 Project deployed here (dist directory when built) :
 http://agoracar.github.io/
