@@ -1,5 +1,4 @@
 # AgoraCar project for Amundi
-# ---------------------------
 
 # Based on Firebase for Data.
 In order to plug a new Firebase instance, change the path to the database in :
