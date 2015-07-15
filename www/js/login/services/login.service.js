@@ -3,8 +3,8 @@
 (function() {
 
   angular.module('carApp')
-    .factory('LoginFactory', ['$q', 'Fire', 'UserFactory',
-    function($q, Fire, UserFactory) {
+    .factory('LoginFactory', ['$q', '$timeout', 'Fire', 'UserFactory',
+    function($q, $timeout, Fire, UserFactory) {
 
       var log = {
 
@@ -63,7 +63,6 @@
         addUserData: function(type, form, uid) {
           var defer = $q.defer();
 
-          form.common.address = null;
           var obj = {
             uid: uid,
             email: form.signin.email,
@@ -75,14 +74,16 @@
             obj = angular.extend(obj, {driver: form.driver});
           }
 
-          var child = Fire.db.child('people');
-          child.push(obj, function(error) {
-            if (error) {
-              defer.reject(error.message);
-            } else {
-              UserFactory.setCurrentUser(obj);
-              defer.resolve('');
-            }
+          $timeout(function() {
+            var child = Fire.db.child('people');
+            child.push(obj, function(error) {
+              if (error) {
+                defer.reject(error.message);
+              } else {
+                UserFactory.setCurrentUser(obj);
+                defer.resolve('');
+              }
+            });
           });
 
           return defer.promise;

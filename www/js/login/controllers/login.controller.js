@@ -14,7 +14,6 @@
           driver: {}
         },
         signin: true,
-        invalidCreds: false,
 
         signForm: function() {
 
@@ -24,11 +23,12 @@
             $scope.login.form
           ).then(
             function() {
-              $state.go('main', {type: $state.params.type});
+              $state.go('main');
             },
-            function(error) {
-              $scope.login.errorMessage = error;
-              $scope.login.invalidCreds = true;
+            function() {
+
+              // redirects to signup if login error
+              $scope.login.signin = false;
             }
           );
 

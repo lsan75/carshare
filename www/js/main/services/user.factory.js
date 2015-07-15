@@ -62,7 +62,6 @@
             angular.forEach(res.val(), function(res, key) {
               var owner = db.child(key);
 
-              data.common.address = null;
               var updateObj = {
                 common: data.common
               };

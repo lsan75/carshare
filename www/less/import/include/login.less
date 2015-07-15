@@ -1,93 +1,59 @@
 .login-container {
 
-  overflow: auto;
-  height: 100%;
-  display: block;
-  position: relative;
   background-color: fade(@theme-color-map-dark, 95%);
-
-  .nav-tabs {
-    width: 100%;
-    display: block;
-    overflow: hidden;
-    border-bottom: 1px solid fade(@base-color-white, 30%);
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-
-    a {
-      width: 50%;
-      display: block;
-
-      color: @base-color-white;
-      float: left;
-      text-align: center;
-      text-decoration: none;
-      text-transform: uppercase;
-      .rem-calc(font-size, 14px);
-      position: relative;
-
-      padding: 0 1px 1px;
-
-      span {
-        display: block;
-
-        .rem-calc(height, 50px);
-        .rem-calc(line-height, 50px);
-      }
-
-      &.active{
-        span{
-          background: @theme-color-map;
-        }
-      }
-
-      &:first-child {
-       border-right: 1px solid fade(@base-color-white, 30%);
-      }
-
-    }
-  }
+  display: block;
+  height: 100%;
+  padding: 0 20%;
+  overflow: auto;
 
   .logo {
     background: url('../img/logo.05.png') 50% 70% no-repeat;
-    .rem-calc(width, 150px);
-    .rem-calc(height, 150px);
-    margin: 0 auto;
-    display: block;
-
-    position: absolute;
-    .rem-calc(top, 50px);
-    left: 0;
-    right: 0;
-
     background-size: 50%;
+    display: block;
+    margin: 1em auto 0;
+    .rem-calc(height, 150px);
+    .rem-calc(width, 150px);
 
     @media @base-media-extra-small {
       background-size: 40%;
       .rem-calc(height, 100px);
     }
-
   }
 
-  .form-wrap{
-    position: absolute;
-    .rem-calc(top, 200px);
-    left: 0;
-    right: 0;
-    bottom: 0;
+  .login-nav {
+    .clearfix();
+    margin: 2em 0 1em;
+    .rem-calc(padding-left, 4px);
+    h1 {
+      float: left;
+      font-size: 1.5em;
+    }
+    aside {
+      color: @base-color-white;
+      float: right;
+      font-size: 1em;
+      font-weight: normal;
+      line-height: 2.5em;
+      a {
+        border-bottom: 1px solid @base-color-blue;
+        color: @base-color-blue;
+        font-weight: normal;
+        text-decoration: none;
+      }
+    }
     @media @base-media-extra-small {
-      .rem-calc(top, 150px);
+      margin: 1em 0;
+      h1 {
+        font-size: 1.5em;
+        float: none;
+        padding: 0;
+        margin: 0;
+      }
+      aside {
+        font-size: 0.75em;
+        float: none;
+        line-height: 1em;
+      }
     }
   }
-
-  .form{
-    width: 40%;
-    margin: 0 auto;
-    @media @base-media-extra-small {
-      width: 80%;
-    }
-  }
-
 }

@@ -3,7 +3,7 @@
 (function() {
 
   angular.module('carApp')
-    .directive('amGoogleAddress', ['$timeout', function($timeout) {
+    .directive('amGoogleAddress', [function() {
 
       return {
         restrict: 'E',
@@ -29,13 +29,16 @@
             fillInAddress: function() {
               var place = autocomplete.getPlace();
 
-              $timeout(function() {
-                scope.login.form.common.street = place.name;
-                var post = place.address_components.length < 7 ?
-                  null : place.address_components[6].long_name;
-                scope.login.form.common.postCode = post;
-                scope.login.form.common.city = place.vicinity;
-              });
+              scope.login.form.common.street = place.name;
+              var post = place.address_components.length < 7 ?
+                null : place.address_components[6].long_name;
+              scope.login.form.common.postCode = post;
+              scope.login.form.common.city = place.vicinity;
+
+              scope.login.form.common.address =
+                scope.login.form.common.street + ', ' +
+                scope.login.form.common.postCode + ' ' +
+                scope.login.form.common.city;
             }
           };
 

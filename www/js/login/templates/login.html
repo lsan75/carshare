@@ -1,29 +1,29 @@
-<section class="login-container" ng-class="{signin: login.signin, signup: !login.signin }">
-
-  <nav class="nav-tabs">
-    <a href="" class="signin" ng-class="{active: login.signin}" ng-click="login.signin = true; login.errorMessage = ''">
-      <span>Connexion</span></a>
-    <a href="" class="signup" ng-class="{active: !login.signin}" ng-click="login.signin = false; login.errorMessage = ''">
-      <span>Nouveau compte</span>
-    </a>
-  </nav>
+<section class="login-container">
 
   <a ui-sref="home" class="logo"></a>
 
-  <div class="form-wrap">
+  <nav ng-if="login.signin" class="login-nav">
+    <h1>Je me connecte</h1>
+    <aside>
+      Pas encore inscrit ?
+      <a href="" ng-click="login.signin = false">Je m'inscris</a>
+    </aside>
+  </nav>
 
-    <form
+  <nav ng-if="!login.signin" class="login-nav">
+    <h1>Je m'inscris</h1>
+    <aside>
+      Déjà inscrit ?
+      <a href="" ng-click="login.signin = true">Je me connecte</a>
+    </aside>
+  </nav>
+
+  <form
     name="signin"
     class="form"
     ng-submit="login.signForm()"
     novalidate
     ng-include="'js/login/templates/user.form.html'">
-
-    </form>
-
-    <p class="form-error-message">{{login.errorMessage}}</p>
-
-  </div>
-
+  </form>
 
 </section>

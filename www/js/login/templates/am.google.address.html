@@ -10,40 +10,8 @@
     placeholder="Votre adresse">
   </div>
 
-  <div class="input-wrap">
-    <label class="label" for="street">Rue</label>
-    <input
-    type="text"
-    id="street"
-    class="input"
-    ng-model="login.form.common.street"
-    ng-readonly="true"
-    ng-required="true"
-    placeholder="Rue">
-  </div>
-
-  <div class="input-wrap w50">
-    <label class="label" for="postcode">Code postal</label>
-    <input
-    type="text"
-    id="postcode"
-    class="input"
-    ng-model="login.form.common.postCode"
-    ng-readonly="true"
-    ng-required="true"
-    placeholder="Code postal">
-  </div>
-
-  <div class="input-wrap w50">
-    <label class="label" for="city">Ville</label>
-    <input
-    type="text"
-    id="city"
-    class="input"
-    ng-model="login.form.common.city"
-    ng-readonly="true"
-    ng-required="true"
-    placeholder="Ville">
-  </div>
+  <input type="hidden" ng-model="login.form.common.street" ng-required="true">
+  <input type="hidden" ng-model="login.form.common.postCode" ng-required="true">
+  <input type="hidden" ng-model="login.form.common.city" ng-required="true">
 
 </div>
