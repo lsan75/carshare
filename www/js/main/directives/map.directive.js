@@ -63,14 +63,16 @@
                   'car';
               }
 
+              var basePath = 'img/icons/';
+
               if(scope.owner.type === 'proposer') {
                 return marker.type === 'proposer' ?
-                  'icone-' + vehicleType + '.dark.png' :
-                  'icone-member.light.min.png';
+                  basePath + 'icone-' + vehicleType + '.dark.png' :
+                  basePath + 'icone-member.light.min.png';
               } else {
                 return marker.type === 'chercher' ?
-                  'icone-member.light.png' :
-                  'icone-' + vehicleType + '.dark.min.png';
+                  basePath + 'icone-member.light.png' :
+                  basePath + 'icone-' + vehicleType + '.dark.min.png';
               }
             },
 
@@ -78,7 +80,7 @@
               var defer = $q.defer();
               var here = dir.formatAddress(marker);
               var image = {
-                url: 'img/icons/' + dir.getIcon(marker)
+                url: dir.getIcon(marker)
               };
 
               GeocodeFactory.getLocation(here).then(function(res) {
@@ -116,11 +118,18 @@
           };
 
           scope.$watch('owner', function() {
+
+            // object not set yet
             if(!markerOwner) { return; }
+
+            // apply new address and position
             var here = dir.formatAddress(scope.owner);
             GeocodeFactory.getLocation(here).then(function(res) {
               markerOwner.setPosition(res.geometry.location);
             });
+
+            // apply new marker icon
+            markerOwner.setIcon({url: dir.getIcon(scope.owner)});
           });
 
           scope.$on('$destroy', function() {
