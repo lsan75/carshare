@@ -1,0 +1,20 @@
+<section class="tip-view" ng-click="dir.close()">
+
+  <div ng-click="$event.stopPropagation()">
+    <header>
+      <a href="" ng-click="dir.close()" class="fa fa-times-circle"></a>
+    </header>
+
+    <article>
+      <h2><i class="fa fa-info-circle"></i> Astuce</h2>
+      <aside>{{dir.content}}</aside>
+    </article>
+
+    <footer>
+      <a href="" ng-click="dir.prev()" class="fa fa-chevron-circle-left"></a>
+      <a href="" ng-click="dir.stop()">Ne plus afficher</a>
+      <a href="" ng-click="dir.next()" class="fa fa-chevron-circle-right"></a>
+    </footer>
+  </div>
+
+</section>

@@ -1,0 +1,83 @@
+.tip-view {
+  background: rgba(0,0,0,0.5);
+  display: none;
+  left: 0;
+  height: 100%;
+  opacity: 0;
+  position: fixed;
+  text-align: center;
+  top: 0;
+  width: 100%;
+
+  .transition();
+
+  &:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    width: 0;
+  }
+
+  div {
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 1px 1px 0.5em 0 #333;
+    color: black;
+    display: inline-block;
+    padding: 0.5em;
+    position: relative;
+    text-align: left;
+    vertical-align: middle;
+    width: 50%;
+    z-index: 101;
+
+    header {
+      position: absolute;
+      top: 0.2em;
+      right: 0.45em;
+      text-align: right;
+      a {
+        font-size: 1em;
+      }
+    }
+
+    article {
+      font-size: 0.8em;
+      padding: 0 0 1em;
+
+      h2 {
+        font-size: 1.1em;
+        margin: 0;
+        padding: 0 0 1em;
+        i {
+          font-size: 1.2em;
+        }
+      }
+
+      aside {
+        padding: 0 0 0 1.3em;
+      }
+    }
+
+    footer {
+      .clearfix;
+      text-align: center;
+
+      a:first-child {
+        float: left;
+      }
+      a:last-child {
+        float: right;
+      }
+      a:first-child, a:last-child {
+        font-size: 1em;
+        padding: 0.3em 0 0;
+      }
+    }
+    a {
+      color: @base-color-blue;
+      font-size: 0.8em;
+      text-decoration: none;
+    }
+  }
+}

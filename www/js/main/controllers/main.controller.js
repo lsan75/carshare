@@ -3,8 +3,8 @@
 (function() {
 
   angular.module('carApp')
-    .controller('MainController', ['$scope', '$timeout', 'MapData', 'UserFactory',
-    function($scope, $timeout, MapData, UserFactory) {
+    .controller('MainController', ['$scope', '$timeout', 'MapData', 'UserFactory', 'TipFactory',
+    function($scope, $timeout, MapData, UserFactory, TipFactory) {
 
       $scope.main = {
         users: MapData,
@@ -12,6 +12,9 @@
         credsHidden: true,
         accountOpen: false,
         message: false,
+
+        tips: TipFactory.getTips(),
+        stopTips: TipFactory.stopTips,
 
         signForm: function() {
           UserFactory.updateOwner($scope.login.form).then(
