@@ -62,8 +62,6 @@
 
     }
 
-
-
     .form{
       position: relative;
       z-index:  @base-z-index-20 + 2;
@@ -71,6 +69,10 @@
       min-width: 200px;
       margin: 0 auto 0 auto;
       padding-top: 20px;
+
+      @media @base-media-extra-small {
+        width: 90%;
+      }
     }
   }
 

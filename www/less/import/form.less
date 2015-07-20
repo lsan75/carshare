@@ -36,9 +36,6 @@
       .rem-calc(line-height, 22px);
       padding-bottom: 0;
       float: left;
-      @media @base-media-extra-small {
-        float: none;
-      }
     }
 
   }
@@ -53,10 +50,10 @@
     .rem-calc(line-height, 18px);
 
     &.min {
+      text-align: right;
       width: 60px;
       .rem-calc(line-height, 22px);
       @media @base-media-extra-small {
-        width: 100%;
         .rem-calc(line-height, 30px);
       }
     }
@@ -94,9 +91,6 @@
   .input-content {
     .inline& {
       float: right;
-      @media @base-media-extra-small {
-        float: none;
-      }
     }
   }
 
