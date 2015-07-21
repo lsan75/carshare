@@ -1,6 +1,6 @@
 .popup {
 
-  position: fixed;
+  position: absolute;
   .rem-calc(top, @h-header-height);
   left: 0;
   right: 0;
@@ -8,7 +8,7 @@
   overflow: hidden;
 
   .popup-bg {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     z-index: @base-z-index-5;
@@ -16,8 +16,6 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     opacity: 1;
-    -webkit-transition: opacity 0.5s;
-    //transition: opacity 0.5s;
     display: block;
 
     @media @base-media-extra-small {
@@ -26,7 +24,7 @@
   }
 
   .form-account {
-    position: fixed;
+    position: absolute;
     z-index: @base-z-index-5;
     .rem-calc(top, @h-header-height);
     bottom: 0;
