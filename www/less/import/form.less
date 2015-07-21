@@ -112,8 +112,6 @@
   text-transform: uppercase;
   background: transparent;
 
-  .transition-duration(0.5s);
-
   &.center {
     .rem-calc(margin-top, 10px);
     .rem-calc(margin-bottom, 10px);
@@ -132,7 +130,7 @@
     }
   }
 
-  &:hover {
+  &:active {
     color: @base-color-grey;
     background-color: fade(@base-color-white, 90%);
     border-color: @base-color-white;
