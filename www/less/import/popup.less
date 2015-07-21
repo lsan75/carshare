@@ -1,7 +1,8 @@
 .popup {
 
   position: fixed;
-  .rem-calc(top, @h-header-height);
+  //.rem-calc(top, @h-header-height);
+  top: @h-header-height;
   left: 0;
   right: 0;
   bottom: 0;
@@ -17,7 +18,7 @@
     background: rgba(0, 0, 0, 0.5);
     opacity: 1;
     -webkit-transition: opacity 0.5s;
-    transition: opacity 0.5s;
+    //transition: opacity 0.5s;
     display: block;
 
     @media @base-media-extra-small {
