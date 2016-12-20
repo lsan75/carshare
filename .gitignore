@@ -1,6 +1,7 @@
 logs/*
 !.gitkeep
 node_modules/
+node_modules/*
 tmp
 .DS_Store
 build/
@@ -14,6 +15,11 @@ www/test_out/
 
 
 www/bower_components/
+www/bower_components/*
 www/coverage/
+www/coverage/*
 www/css/
 dist/
+dist/*
+design/
+design/*
